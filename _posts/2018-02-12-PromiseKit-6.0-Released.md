@@ -25,10 +25,12 @@ a `Guarantee`:
 after(seconds: 0.3).then {
     // triggers after 0.3 seconds, and of course, this cannot error
 }
+
+// ^^ There is no `catch`; you *cannot* write one. Errors are not possible.
 ```
 
 The key difference is the lack of the need for a `catch`, and in addition, we
-use Swift to inform you of this, Promise’s `then` does not declare
+use Swift to inform you of this, `Promise`’s `then` does not declare
 `@discardableResult`, so you get a warning to *do something* with the result of
 your `then`, that is, you must `catch` or return the promise thus punting the
 warning to a higher level, where you there will need to `catch`.
@@ -38,7 +40,7 @@ Swift error system's intent and since Promises are like `do`, `try` blocks but
 for asynchronicity, this works well.
 
 Another marvelous outcome of this is our `when(resolved:)` variant. This `when`
-always resolves because it resovles with an array of `Result`, thus it *cannot*
+always resolves because it resolves with an array of `Result`, thus it *cannot*
 error. With PMK4 you had to just know that you didn't need to `catch` with
 PMK 6 Swift itself knows you cannot `catch` because it returns a `Guarantee`.
 
@@ -47,7 +49,7 @@ when(resolved: promises).done { results in
     //…
 }
 
-// ^^ `catch` is possible. Errors are not possible.
+// ^^ There is no `catch`; you *cannot* write one. Errors are not possible.
 ```
 
 > *Note* we also provide `when(fulfilled:)` which rejects if any of the promises

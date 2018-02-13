@@ -332,7 +332,7 @@ Which is a static method on `Promise<T>`.
 
 ### Initializers
 
-```
+```swift
 Promise { fulfill, reject in
     asyncThing { value, error in
         if let value = value {
@@ -348,6 +348,7 @@ Promise { fulfill, reject in
 
 Becomes:
 
+```swift
 Promise { seal in
     asyncThing { value, error in
         seal.resolve(value, error)
@@ -365,13 +366,13 @@ Promise(resolver: asyncThing)
 
 We removed this intiializer (rationale is above), so:
 
-```
+```swift
 return Promise(value: foo)
 ```
 
 Becomes:
 
-```
+```swift
 return .value(foo)
 ```
 
@@ -386,7 +387,7 @@ you want.
 If your chain cannot fail try to use Guarantees. One way to force a guarantee
 is to use `recover` to recover all errors:
 
-```
+```swift
 foo().recover{}.done { foo in
     //…
 }

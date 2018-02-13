@@ -70,7 +70,8 @@ In use we find the introduction of `Guarantee` fabulous and very “Swifty”.
 ## Why PromiseKit 5/6?
 
 For the first year running we didn't need a new major version for Swift 4. Swift
-3 and 4 changed very little. Thus PromiseKit 4 supports Swift 3 & 4.
+3 and 4 had very few breaking language or stdlib changes. Thus PromiseKit 4 & 6
+both support Swift 3 & 4.
 
 Using PromiseKit has been delightful… and awful. Swift is great… and terrible,
 specifically its error diagnostics are so bad in certain conditions that I
@@ -85,7 +86,7 @@ PromiseKit is all closures. So you can see our problem.
 
 I believe in tools that are as easy to get up to speed with as possible, the
 idea that you should have to spend time learning how to use something so that
-you can get your work done quicker is nonsnse. You should reject that. We do.
+you can get your work done quicker is nonsense. You should reject that. We do.
 
 With PromiseKit our `then` did multiple things, and we relied on Swift to infer
 the correct `then` from context. However with multiple line `then`s it would
@@ -109,8 +110,8 @@ closures without any pain. `then` and `map` still require you to specify the
 return types for closures if they are multiple line, but often they are single
 line because you are chaining promises encapsulated in other functions.
 
-The result is a happier compiler, a happier *you* and also, pleasantly and
-surprisingly, clearer intent for your chains.
+The result is a happier compiler, a happier *you* and also, pleasantly (and
+somewhat surprisingly), clearer intent for your chains.
 
 ### `flatMap`
 
@@ -388,7 +389,7 @@ Promise(resolver: asyncThing)
 
 ### `Promise(value:)`
 
-We removed this intiializer (rationale is above), so:
+We removed this initializer (rationale is above), so:
 
 ```swift
 return Promise(value: foo)
@@ -436,7 +437,7 @@ return Promise(resolver: start)
 ```
 
 
-## PromiseKit is now in maintainance mode
+## PromiseKit is now in maintenance mode
 
 We really don't expect any further large changes. We believe we have correctly
 applied promises to Swift and that Swift itself won't change that much in the

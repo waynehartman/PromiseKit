@@ -73,7 +73,7 @@ For the first year running we didn't need a new major version for Swift 4. Swift
 Using PromiseKit has been delightful… and awful. Swift is great… and terrible,
 specifically its error diagnostics are so bad in certain conditions that I
 honestly have started to wonder if recommending the language is still a good
-idea. Like shit, Javascript is terrible, but at least when it goes wrong you can
+idea. Like, Javascript is terrible, but at least when it goes wrong you can
 figure out what you have to do to fix your code. Swift lies.
 
 If there is an error inside a closure, Swift, with no improvements since v1 :(,
@@ -310,7 +310,7 @@ let p = Promise { fulfill, reject in
 ```
 
 What should `p` be? Hopefully `Promise<Int>` but actually, sometimes,
-`Promise<(_->Void, (Error)->Void)>`. Yeah. What the fuck? Well it's because
+`Promise<(_->Void, (Error)->Void)>`. Yeah. What the…? Well it's because
 of trailing closure syntax, and Swift greedily trying to use this initializer
 even though there is the much better `Promise(resolver:)` intializer that
 fits this syntax exactly.

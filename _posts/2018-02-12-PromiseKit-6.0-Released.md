@@ -396,6 +396,21 @@ foo().recover{_ in}.done { foo in
 Use this carefully! Ideally you’d just convert foo() to return a `Guarantee`,
 aim for the highest level where there are no errors and switch that over.
 
+### `wrap`
+
+wrap is no longer provided, use `Promise(resolver:)`:
+
+
+``swift
+return PromiseKit.wrap(start)
+```
+
+Becomes:
+
+```swift
+return Promise(resolver: start)
+```
+
 
 ## PromiseKit is now in maintainance mode
 

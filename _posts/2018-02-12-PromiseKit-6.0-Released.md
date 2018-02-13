@@ -401,7 +401,7 @@ aim for the highest level where there are no errors and switch that over.
 wrap is no longer provided, use `Promise(resolver:)`:
 
 
-``swift
+```swift
 return PromiseKit.wrap(start)
 ```
 

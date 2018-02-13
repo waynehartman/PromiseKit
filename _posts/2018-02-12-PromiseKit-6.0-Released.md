@@ -282,7 +282,7 @@ firstly {
 If the array is empty PromiseKit fails the chain (say hi in your `catch`).
 Otherwise you get one result.
 
-### Ambiguity--
+### Ambiguity`--`
 
 For some of our extensions we made using Apple's frameworks less good. Ambiguity
 resulted. For example:
@@ -308,7 +308,7 @@ Swifty, readable, clear and the compiler is happy.
 In general we have tried to improve naming and align as closely as possible to
 the Apple functions we mirror. For example:
 
-```
+```swift
 CLLocationManager.promise() -> CLLocationManager.requestLocation()
 
 UIView.promiseAnimation(withDuration: 0.3) -> UIView.animate(.promise, duration: 0.3)
@@ -327,7 +327,7 @@ Promise(value: T)
 
 Swift is greedy and would try to use this constructor too readily. For example:
 
-```
+```swift
 let p = Promise { fulfill, reject in
     fulfill(1)
 }

@@ -388,7 +388,7 @@ If your chain cannot fail try to use Guarantees. One way to force a guarantee
 is to use `recover` to recover all errors:
 
 ```swift
-foo().recover{}.done { foo in
+foo().recover{_ in}.done { foo in
     //…
 }
 ```

@@ -437,6 +437,16 @@ return Promise { start(completionHandler: $0.resolve) }
 It was always desired to have `wrap` be a `Promise` initializer for clarity
 reasons, but it wasn't possible until Swift 3.1 allowed us to specialize
 extensions. So now we can do it, we do.
+
+### Apologies, there are a lack of deprecations
+
+We do not have many deprecations, so your code may stop compiling if you
+upgrade. The reason for the lack of deprecation notices is again: ambiguity.
+Swift tends to pick even deprecated versions of ambiguous functions, and this
+let to pain when writing new code.
+
+We suggest looking at the [sources for the extensions](https://github.com/PromiseKit)
+we provide should you need to. The code is neatly organized and easy to read.
   
 
 ## PromiseKit is now in maintenance mode

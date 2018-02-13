@@ -178,6 +178,9 @@ firstly {
 }
 ```
 
+`tap` feeds you the current `Result<T>` for the chain, so is called if the
+chain is succeeding or if it is failing.
+
 ### `last`, `first`, `filter`, `compactMap`, etc.
 
 We have added many of the other functional primitives that `Sequence` have.
@@ -186,7 +189,7 @@ We have added many of the other functional primitives that `Sequence` have.
 
 We altered the main initializer:
 
-```
+```swift
 Promise { fulfill, reject in
     //…
 }
@@ -194,7 +197,7 @@ Promise { fulfill, reject in
 
 You now have:
 
-```
+```swift
 Promise { seal in
     // seal.fulfill(foo)
     // seal.reject(error)
@@ -211,12 +214,14 @@ However there are good reasons for it. The `seal` has many overrides of
 `resolve` so you can typically just pass `seal.resolve` to a completion handler
 and Swift will automatically figure out the types:
 
-```
+```swift
 func myFunction(withCompletion: (String?, Error?) -> Void) {
     //…
 }
 
-Promise { myFunction(withCompletion: $0.resolve) }.then { foo in
+Promise {
+    myFunction(withCompletion: $0.resolve)
+}.then { foo in
     // foo is `String`!
 }.catch {
     // errors from myFunction are handled!

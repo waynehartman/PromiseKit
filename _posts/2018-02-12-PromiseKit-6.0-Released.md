@@ -147,7 +147,7 @@ firstly {
 }
 ```
 
-#### Why `flatMap`?
+### Why `flatMap`?
 
 Didn’t Swift 4.1 rename one of these `compactMap`? Yes, but one of these being
 the thing, we are copying `Optional`’s flatMap:
@@ -166,7 +166,7 @@ only if the chain is not rejected. Then the value from the transform continues
 if it is not `nil`, otherwise returning `nil`, for Promises we reject the chain
 if it is `nil` using `PMKError.flatMap`.
 
-[The name is wrong discussion](https://github.com/mxcl/PromiseKit/issues/773),
+[Here is the “the name is wrong” discussion](https://github.com/mxcl/PromiseKit/issues/773),
 please chime in.
 
 ### `get`

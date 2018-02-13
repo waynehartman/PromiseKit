@@ -147,6 +147,28 @@ firstly {
 }
 ```
 
+#### Why `flatMap`?
+
+Didn’t Swift 4.1 rename one of these `compactMap`? Yes, but one of these being
+the thing, we are copying `Optional`’s flatMap:
+
+```swift
+Optional<Data>.none.flatMap(UIImage.init)  // => nil
+Data().flatMap(UIImage.init)  // => nil
+validImageData.flatMap(UIImage.init)  // => UIImage
+
+Optional<Int>.none.map{ $0 + 1 } // => nil
+Optional.some(1).map{ $0 + 1 }  // => 2
+```
+
+The transform occurs only if the object is not `nil`, for Promises this means
+only if the chain is not rejected. Then the value from the transform continues
+if it is not `nil`, otherwise returning `nil`, for Promises we reject the chain
+if it is `nil` using `PMKError.flatMap`.
+
+[The name is wrong discussion](https://github.com/mxcl/PromiseKit/issues/773),
+please chime in.
+
 ### `get`
 
 `get` is `done` but it returns the same value that your handler is fed:

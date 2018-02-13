@@ -14,7 +14,3 @@ order: 4
     </li>
   {% endfor %}
 </ul>
-
-# Changelog
-
-[Visit Changelog on GitHub](https://github.com/mxcl/PromiseKit/blob/master/CHANGELOG.markdown).

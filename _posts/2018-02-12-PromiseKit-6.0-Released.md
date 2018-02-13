@@ -318,15 +318,14 @@ DispatchQueue.global().promise -> DispatchQueue.global().async(.promise)
 
 ## What Happened to PromiseKit 5?
 
-We released 5 to Carthage, but we're not confident in it. In the end this proved
-right, we didn't remove all ambiguity. This constructor was evil:
+We released 5 to Carthage, but weren’t entirely confident in it. In the end this
+proved right, we didn't remove all ambiguity. This constructor was evil:
 
 ```swift
 Promise(value: T)
 ```
 
-Swift is greedy and would try to use this constructor too readily. For example
-this could become this constructor:
+Swift is greedy and would try to use this constructor too readily. For example:
 
 ```
 let p = Promise { fulfill, reject in
@@ -340,10 +339,9 @@ of trailing closure syntax, and Swift greedily trying to use this initializer
 even though there is the much better `Promise(resolver:)` intializer that
 fits this syntax exactly.
 
-Still this would happen, and even though almost always you'd catch it, and
-almost always it would not be a bug, we had situations where it got to
-production due to Swift type inference hiding the mis-identification of the
-type from us.
+When this happened you’d almost always spot it, however we had situations where
+it got to production due to Swift type inference hiding the mis-identification
+of the type from us.
 
 So we removed it. So now if you need a resolved promise use:
 
@@ -418,12 +416,12 @@ foo().recover{_ in}.done { foo in
 }
 ```
 
-Use this carefully! Ideally you’d just convert foo() to return a `Guarantee`,
-aim for the highest level where there are no errors and switch that over.
+Use this carefully! Ideally you’d just convert `foo()` to return a `Guarantee`,
+aim for the lowest level where there are no errors and switch that over.
 
 ### `wrap`
 
-wrap is no longer provided, use `Promise(resolver:)`:
+`wrap` is no longer provided, use `Promise(resolver:)`:
 
 
 ```swift
@@ -433,9 +431,13 @@ return PromiseKit.wrap(start)
 Becomes:
 
 ```swift
-return Promise(resolver: start)
+return Promise { start(completionHandler: $0.resolve) }
 ```
 
+It was always desired to have `wrap` be a `Promise` initializer for clarity
+reasons, but it wasn't possible until Swift 3.1 allowed us to specialize
+extensions. So now we can do it, we do.
+  
 
 ## PromiseKit is now in maintenance mode
 

@@ -438,6 +438,10 @@ It was always desired to have `wrap` be a `Promise` initializer for clarity
 reasons, but it wasn't possible until Swift 3.1 allowed us to specialize
 extensions. So now we can do it, we do.
 
+### `ensure`
+
+`always` is now `ensure`.
+
 ### Apologies, there are a lack of deprecations
 
 We do not have many deprecations, so your code may stop compiling if you

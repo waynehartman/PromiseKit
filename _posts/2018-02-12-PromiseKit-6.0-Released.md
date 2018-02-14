@@ -438,9 +438,40 @@ It was always desired to have `wrap` be a `Promise` initializer for clarity
 reasons, but it wasn't possible until Swift 3.1 allowed us to specialize
 extensions. So now we can do it, we do.
 
-### `ensure`
+### `always`
 
 `always` is now `ensure`.
+
+### `Promisable`
+
+Previously we provided a `Promisable` protocol as part of our UIKit extensions
+to facilitate using promises with `UIViewController` presentation and
+dismissals.
+
+I'm sorry if you depended on this because we have removed it. We feel it was
+not a good *general* solution and we feel it was a bad pattern that violated
+the encapsulation of your view-controller heirarchy. Instead we suggest adding
+some minimal code to your view controllers that you want to be governed by a 
+promise:
+
+```swift
+class ViewController: UIViewController {
+
+    private let (promise, seal) = Guarantee<…>.pending()  // use Promise if your flow can fail
+    
+    func show(in: UIViewController) -> Promise<…> {
+        in.show(self, sender: in)
+        return promise
+    }
+    
+    // you will need to call this instead of `dismiss`
+    // if there's a sure-fire way to know when a vc is dismissed, Apple don't document it.
+    func done() {
+        dismiss(animated: true)
+        seal.fulfill(…)
+    }
+}
+```
 
 ### Apologies, there are a lack of deprecations
 

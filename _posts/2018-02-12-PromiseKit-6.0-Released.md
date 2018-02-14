@@ -457,7 +457,7 @@ promise:
 ```swift
 class ViewController: UIViewController {
 
-    private let (promise, seal) = Guarantee<…>.pending()  // use Promise if your flow can fail
+    private let (promise, seal) = Promise<…>.pending()  // use Guarantee if your flow can’t fail
     
     func show(in: UIViewController) -> Promise<…> {
         in.show(self, sender: in)

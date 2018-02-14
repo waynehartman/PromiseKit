@@ -505,7 +505,7 @@ your own contexts. Or just use a Guarantee if there is no error condition.
 We do not have many deprecations, so your code may stop compiling if you
 upgrade. The reason for the lack of deprecation notices is again: ambiguity.
 Swift tends to pick even deprecated versions of ambiguous functions, and this
-let to pain when writing new code.
+led to pain when writing new code.
 
 We suggest looking at the [sources for the extensions](https://github.com/PromiseKit)
 we provide should you need to. The code is neatly organized and easy to read.

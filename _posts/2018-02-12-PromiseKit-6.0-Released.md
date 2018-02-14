@@ -473,6 +473,28 @@ class ViewController: UIViewController {
 }
 ```
 
+### `PMKAlertController`
+
+Removed. This was not good enough a model for the library, by all means grab it
+from PMK4 and use it, but we should not encourage this generally. Instead you
+can easily add promises yourself:
+
+```swift
+Promise { seal in
+    let ac = UIAlertController(…)
+    ac.addAction(.init(…, completionHandler: seal.fulfill))
+    ac.addAction(.init(…, completionHandler: seal.reject))
+    present(ac, animated: true)
+}.done { _ in
+    //…
+}.catch { _ in
+    //…
+}
+``` 
+
+Doing it yourself gives you control over what fulfilled and rejected mean in
+your own contexts. Or just use a Guarantee if there is no error condition.
+
 ### Apologies, there are a lack of deprecations
 
 We do not have many deprecations, so your code may stop compiling if you

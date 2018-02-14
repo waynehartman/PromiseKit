@@ -450,9 +450,14 @@ dismissals.
 
 I'm sorry if you depended on this because we have removed it. We feel it was
 not a good *general* solution and we feel it was a bad pattern that violated
-the encapsulation of your view-controller heirarchy. Instead we suggest adding
-some minimal code to your view controllers that you want to be governed by a 
-promise:
+the encapsulation of your view-controller heirarchy.
+
+
+Instead we suggest adding some minimal code to your view controllers that you
+want to be governed by a promise. To be clear this still violates encapsulation
+because the viewController dismisses itself, but that's your decision to make
+(I do it in my apps!), it’s just that the library itself should not promote this
+pattern.
 
 ```swift
 class ViewController: UIViewController {

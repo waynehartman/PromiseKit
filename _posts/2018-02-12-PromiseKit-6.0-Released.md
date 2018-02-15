@@ -61,11 +61,16 @@ can be no error handling!
 ### `Thenable`
 
 Guarantees and Promises both conform to the same protocol `Thenable` and thus
-can be combined. If you return a Promise from a `Guarantee`’s `then` the chain
-becomes a Promise chain. If you use `recover` on a `Promise` chain it becomes
-a `Guarantee`.
+can be combined. If you return a Promise from a `Guarantee`’s `then` (or if you
+throw) the chain becomes a Promise chain. If you use `recover` on a `Promise`
+chain it becomes a `Guarantee`.
 
 In use we find the introduction of `Guarantee` fabulous and very “Swifty”.
+
+> Notably returning a `Guarantee` from a `Promise`’s `then` does not cause that
+`then` to return a `Guarantee`. Any part of a previous chain could have error’d
+even if that specific `then` does not, so we cannot become a `Guarantee` unless
+you `recover` (and your recover handler cannot `throw`!) first.
 
 ## Why PromiseKit 5/6?
 

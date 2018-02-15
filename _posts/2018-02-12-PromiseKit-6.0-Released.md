@@ -366,7 +366,7 @@ that transform values and usually are stateless, and those that finalize chains
 and usually modify application state. It's the latter that you almost always
 want on the main queue since it acts as an easy form of synchronization:
 
-```
+```swift
 PromiseKit.conf.Q.map = .global()
 PromiseKit.conf.Q.return = .main  // FYI this is the default
 ```

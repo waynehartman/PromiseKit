@@ -350,6 +350,33 @@ return .value(1)
 ```
 
 Which is a static method on `Promise<T>`.
+
+
+## Defining the Default DispatchQueue 
+
+By default all PromiseKit handlers dispatch to `.main`, this is safest and thus
+the default.
+
+However we heartily recommend you change the default queue for `then`, `map` and
+the other “transforming” functions to a background queue.
+
+PromiseKit has always allowed you to change the default queue, but 6 goes a 
+little further and distinguishes between the two main kinds of handler: those
+that transform values and usually are stateless, and those that finalize chains
+and usually modify application state. It's the latter that you almost always
+want on the main queue since it acts as an easy form of synchronization:
+
+```
+PromiseKit.conf.Q.map = .global()
+PromiseKit.conf.Q.return = .main  // FYI this is the default
+```
+
+Especially now Xcode 9 gives a runtime warning for using function that must be
+on the main queue in the background. This is a low-risk, high-gain tweak for
+your apps.
+
+> Note sorry about these names. I missed the `TODO` to fix them before release…
+
   
 ## Migration Guide
 
@@ -499,6 +526,12 @@ Promise { seal in
 
 Doing it yourself gives you control over what fulfilled and rejected mean in
 your own contexts. Or just use a Guarantee if there is no error condition.
+
+### Zalgo
+
+If you must unleash zalgo, we now accept `nil` as the queue for any handler,
+which aligns us more closely with what `nil` (usually) means with Apple's
+APIs for queue type parameters.
 
 ### Apologies, there are a lack of deprecations
 

@@ -539,6 +539,23 @@ which aligns us more closely with what `nil` (usually) means with Apple's
 APIs for queue type parameters.
 
 
+### `then(execute:)`
+
+Because it reads better we dropped the `execute:` parameter name for `then`, so:
+
+```swift
+fetch().then(execute: layout)
+```
+
+Becomes:
+
+```swift
+fetch().then(layout)
+```
+
+Of course this only applies when you pass functions directly to `then`.
+
+
 ### `.catch{ /*…*/ }.finally`
 
 In PMK 4 `catch` returned the promise it was attached to. This led to unexpected

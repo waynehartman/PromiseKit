@@ -595,7 +595,30 @@ led to pain when writing new code.
 
 We suggest looking at the [sources for the extensions](https://github.com/PromiseKit)
 we provide should you need to. The code is neatly organized and easy to read.
-  
+
+## Wishlist for Swift 5
+
+Swift still sucks for error diagnostics, and it is a massive barrier to entry
+for newcomers to programming (I teach newcomers to programming at my coding
+school).
+
+For example PromiseKit still sucks because of Swift errors, here's an example:
+
+```swift
+try service.fetchAll().then { result in
+      self.projects = result.projects
+}
+```
+
+This errors. The issue is: `then` requires you to return a `Promise` and nothing
+is returning. So what error does Swift give us?
+
+    error: Type of expression is ambiguous without more context`
+
+While error messages are basically useless as much as half the time Swift will
+lose mind-share and respect. I see it with new devs, they shake their heads and
+then tell me they prefer Javascript, t theyhen start reading up about React
+Native.
 
 ## PromiseKit is now in maintenance mode
 

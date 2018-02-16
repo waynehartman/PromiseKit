@@ -538,6 +538,37 @@ If you must unleash zalgo, we now accept `nil` as the queue for any handler,
 which aligns us more closely with what `nil` (usually) means with Apple's
 APIs for queue type parameters.
 
+
+### `.catch{ /*…*/ }.finally`
+
+In PMK 4 `catch` returned the promise it was attached to. This led to unexpected
+behavior for many people and was a mistake. Sorry.
+
+However, often it is useful to have what is an `ensure` and to have it occur
+after your `catch` handler. Thus we have `finally` (named because it really is
+*finally*).
+
+```swift
+
+spinner(visible: true)
+
+firstly {
+    foo()
+}.done {
+    //…
+}.catch {
+    //…
+}.finally {
+    self.spinner(visible: false)
+}
+```
+
+> Note, indeed you cannot do anything else after a `catch`. `catch` is a chain-
+terminator, if we allowed you to generally chain off of it it would easily lead
+to situations of ambiguity for *you*, what should happen if you `catch` after a
+`catch`? What is the value of the chain after the `catch`? These are questions
+that could have multiple answers.
+
 ### Apologies, there are a lack of deprecations
 
 We do not have many deprecations, so your code may stop compiling if you

@@ -613,11 +613,11 @@ try service.fetchAll().then { result in
 This errors. The issue is: `then` requires you to return a `Promise` and nothing
 is returning. So what error does Swift give us?
 
-    error: Type of expression is ambiguous without more context`
+    error: Type of expression is ambiguous without more context
 
 While error messages are basically useless as much as half the time Swift will
 lose mind-share and respect. I see it with new devs, they shake their heads and
-then tell me they prefer Javascript, t theyhen start reading up about React
+then tell me they prefer Javascript, they then start reading up about React
 Native.
 
 I even see experienced developers not know how to proceed here, and this is for

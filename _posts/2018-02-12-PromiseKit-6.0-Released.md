@@ -610,6 +610,16 @@ to situations of ambiguity for *you*, what should happen if you `catch` after a
 `catch`? What is the value of the chain after the `catch`? These are questions
 that could have multiple answers.
 
+### No More Unhandled-Error-Handler
+
+Relunctantly this is gone. A fabulous feature, but maintaining it was quite a
+burden. Partly the reason we justify this is now it is quite hard to *not*
+handle errors due to `Guarantee` and Swift warning when you don’t add `catch`
+to your chains. Still there are scenarios that you can concoct where by you
+could have chains without error-handling. Ideally we would bring this back, but
+it is immensely intrusive to our codebase. PR welcome.
+
+
 ### Apologies, there are a lack of deprecations
 
 We do not have many deprecations, so your code may stop compiling if you

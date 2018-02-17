@@ -41,6 +41,7 @@ fetch().then {
 }
 
 // ^^ Swift will warn “unused result” which is your hint that you forgot error handling
+// NOTE `fetch` returns Promise, you’d get *no warning* if it returned Guarantee
 
 fetch().then {
     //…

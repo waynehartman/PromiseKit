@@ -33,11 +33,34 @@ The key difference is the lack of the need for a `catch`, and in addition, we
 use Swift to inform you of this, `Promise`’s `then` does not declare
 `@discardableResult`, so you get a warning to *do something* with the result of
 your `then`, that is, you must `catch` or return the promise thus punting the
-warning to a higher level, where you there will need to `catch`.
+warning to a higher level, where you there will need to `catch`:
+
+```swift
+fetch().then {
+    //…
+}
+
+// ^^ Swift will warn “unused result” which is your hint that you forgot error handling
+
+fetch().then {
+    //…
+}.catch {
+    //…
+}
+
+// ^^ no warning
+
+return fetch().then {
+    //…
+}
+
+// ^^ warning is punted to the caller of this function,
+// ie. caller takes responsibilty for error handling
+```
 
 `Guarantee`s make using PromiseKit as error-safe as Swift, thus they match the
-Swift error system's intent and since Promises are like `do`, `try` blocks but
-for asynchronicity, this works well.
+Swift error system's intent and since Promises are like `do`, `try`, `catch`
+blocks but for asynchronicity: this works well.
 
 Another marvelous outcome of this is our `when(resolved:)` variant. This `when`
 always resolves because it resolves with an array of `Result`, thus it *cannot*

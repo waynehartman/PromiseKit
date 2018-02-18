@@ -82,6 +82,10 @@ when you need all promises to finish even if they error you can use the above
 `when(resolved:)` variant and the language itself will make it clear that there
 can be no error handling!
 
+> *Note* sometimes you just don’t care about the `catch` (you monster you!),
+so we provide `cauterize()` use it to terminate a chain, log any error and
+remove the warning from your `Promise` chain.
+
 ### `Thenable`
 
 Guarantees and Promises both conform to the same protocol `Thenable` and thus
